@@ -9,7 +9,8 @@ public class DicisionAlgorithemSecond {
     static Scanner sc = new Scanner(System.in);
 
     private static int choice(int arr[], int lt, int rt) {
-
+        int answer=0;
+        return answer;
     }
 
     private static void das(int arr[], int n, int k) {
