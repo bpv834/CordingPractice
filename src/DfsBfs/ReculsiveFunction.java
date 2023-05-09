@@ -23,12 +23,21 @@ public class ReculsiveFunction {
         return answer;
     }
 
+    private static void Nprint(int n) {
+        String answer = "";
+        if (n == 0) {
+            return;
+        }
+        else {
+            Nprint(n - 1);
+            System.out.println(n+" ");
+        }
+    }
+
 
 
     public static void main(String[] args) {
-        System.out.println(rf(10));
-        String str = "식빵맨";
-        System.out.println(str+1);
-        System.out.println(facto(5));
+        String answer = "";
+        Nprint(sc.nextInt());
     }
 }
