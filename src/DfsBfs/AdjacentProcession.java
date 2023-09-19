@@ -1,4 +1,4 @@
-package DfsBfs;
+package memoBfs;
 
 import java.util.Scanner;
 import java.util.Stack;

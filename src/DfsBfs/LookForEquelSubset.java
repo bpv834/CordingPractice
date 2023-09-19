@@ -1,4 +1,4 @@
-package DfsBfs;
+package memoBfs;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class LookForEquelSubset {
     static int n = sc.nextInt();
     static int arr[] = new int[n];
     static String answer = "NO";
-    static void Dfs(int L,int sum){
+    static void memo(int L,int sum){
         if(ch==true)
             return;
         if (L == n) {
@@ -19,8 +19,8 @@ public class LookForEquelSubset {
             }
         }
         else{
-            Dfs(L + 1, sum + arr[L]);
-            Dfs(L + 1, sum);
+            memo(L + 1, sum + arr[L]);
+            memo(L + 1, sum);
         }
 
     }
@@ -31,7 +31,7 @@ public class LookForEquelSubset {
             arr[i] = sc.nextInt();
             All += arr[i];
         }
-        Dfs(0, 0);
+        memo(0, 0);
         System.out.println(answer);
 
     }
