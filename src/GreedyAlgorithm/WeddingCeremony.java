@@ -8,7 +8,7 @@ public class WeddingCeremony {
     static int[][] arr = new int[n][2];
     static ArrayList<Time> times = new ArrayList<>();
     static int answer = Integer.MIN_VALUE;
-    static int cnt=0;
+    static int cnt = 0;
 
     public static void main(String[] args) {
         for (int i = 0; i < n; i++) {
@@ -21,7 +21,7 @@ public class WeddingCeremony {
                 if (j == 0) {
                     Time tmp1 = new Time(arr[i][j], "S");
                     times.add(tmp1);
-                } else if (j == 1) {
+                } else {
                     Time tmp2 = new Time(arr[i][j], "E");
                     times.add(tmp2);
                 }
@@ -30,19 +30,19 @@ public class WeddingCeremony {
         Collections.sort(times);
         for (Time t : times) {
             System.out.println(t.getTime() + " " + t.getState());
-            if (t.state == "S") {
+            if (t.state.equals("S")) {
                 answer = Math.max(++cnt, answer);
-            }
-            else {
+            } else {
                 answer = Math.max(--cnt, answer);
             }
         }
         System.out.println(answer);
 
     }
+
     static class Time implements Comparable<Time> {
-        private int time;
-        private String state;
+        private final int time;
+        private final String state;
 
         public Time(int time, String state) {
             this.time = time;
@@ -63,8 +63,7 @@ public class WeddingCeremony {
             if (this.time - other.time == 0) {
 //                return Integer.compare(this.state - other.state);
                 return this.state.compareTo(other.state);
-            }
-            else {
+            } else {
                 return this.time - other.time;
             }
         }
