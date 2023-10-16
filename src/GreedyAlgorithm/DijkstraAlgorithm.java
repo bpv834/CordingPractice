@@ -29,7 +29,7 @@ public class DijkstraAlgorithm {
             Edge tmp = pQ.poll();
             int nowVtx = tmp.vtx; //1
             int nowCost = tmp.cost; //0
-            if (dist[nowVtx] < nowCost) continue;
+            if (nowCost > dist[nowVtx]) continue;
             for (Edge edge : graph.get(nowVtx)
             ) {
                 if (dist[edge.vtx] > nowCost + edge.cost) {
