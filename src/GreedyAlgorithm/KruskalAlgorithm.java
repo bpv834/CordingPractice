@@ -1,8 +1,10 @@
+package GreedyAlgorithm;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Main {
+public class KruskalAlgorithm {
     static Scanner sc = new Scanner(System.in);
     static int n = sc.nextInt(), m = sc.nextInt();
     static int parent[] = new int[n + 1];
@@ -35,14 +37,19 @@ public class Main {
         }
         Collections.sort(graph);
         for (Edge edge : graph) {
+            System.out.println(edge.v1 + " " + edge.v2 + " " + edge.cost);
             if (Union(edge.v1, edge.v2)) {
                 answer += edge.cost;
+                System.out.println(answer);
+            } else {
+                System.out.println("어?");
             }
         }
-        System.out.println(answer);
+
+
     }
 
-    static class Edge implements Comparable<Edge> {
+    public static class Edge implements Comparable<Edge> {
         int v1;
         int v2;
         int cost;
