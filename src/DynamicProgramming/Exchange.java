@@ -1,4 +1,4 @@
-package GreedyAlgorithm;
+package DynamicProgramming;
 
 import java.util.Arrays;
 import java.util.Scanner;
