@@ -1,7 +1,9 @@
+package BaekJoonPractice.Search;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class TwoSixZeroSix {
     static Scanner sc = new Scanner(System.in);
     static int answer=0;
     static int n = sc.nextInt();
@@ -20,15 +22,16 @@ public class Main {
             graph.get(b).add(a);
         }
         Dfs(1);
-        System.out.println(--answer);
+        System.out.println(answer);
 
     }
     static void Dfs(int v){
         answer++;
         ch[v]=1;
         for (int nv:graph.get(v)
-        ) {
+             ) {
             if (ch[nv] == 0) {
+                System.out.println(nv);
                 Dfs(nv);
             }
         }
