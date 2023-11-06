@@ -1,64 +1,85 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+    import java.util.*;
 
-public class Main {
-    static Scanner sc = new Scanner(System.in);
-    static int n = sc.nextInt(), m = sc.nextInt();
-    static int parent[] = new int[n + 1];
-    static ArrayList<Edge> graph = new ArrayList<>();
-    static int answer = 0;
+    public class Main {
 
-    static int Find(int me) {
-        if (parent[me] == me) return me;
-        else return Find(parent[me]);
-    }
+        static boolean ch[];
 
-    static Boolean Union(int v1, int v2) {
-        int fv1 = Find(v1);
-        int fv2 = Find(v2);
-        if (fv1 != fv2) {
-            parent[fv2] = fv1;
-            return true;
-        } else {
-            return false;
-        }
-    }
+        static void Dfs(int vtx, ArrayList<ArrayList<Integer>> graph, int n, int L, int dfs[], boolean ch[]) {
+            if (L == n) return;
+            if (!ch[vtx]) {
+                ch[vtx] = true;
+                dfs[L++] = vtx;
+            }
+            for (int x : graph.get(vtx)
+            ) {
 
-    public static void main(String[] args) {
-        for (int i = 1; i <= n; i++) parent[i] = i;
-        for (int i = 0; i < m; i++) {
-            int v1 = sc.nextInt();
-            int v2 = sc.nextInt();
-            int cost = sc.nextInt();
-            graph.add(new Edge(v1, v2, cost));
-        }
-        Collections.sort(graph);
-        for (Edge edge : graph) {
-            if (Union(edge.v1, edge.v2)) {
-                answer += edge.cost;
+                //vtx를 x로 선정하는데 온길은 선택하지 않겠다
+                if (!ch[x]) {
+                    Dfs(x, graph, n, L, dfs, ch);
+                }
             }
         }
-        System.out.println(answer);
-    }
 
-    static class Edge implements Comparable<Edge> {
-        int v1;
-        int v2;
-        int cost;
+        static void Bfs(int L, int vtx, ArrayList<ArrayList<Integer>> graph, Queue<Integer> Q, int bfs[], boolean ch[]) {
+            Q.add(vtx);
+            while (!Q.isEmpty()) {
+                int temp = Q.poll();
+                bfs[L++] = temp;
+                ch[temp] = true;
+                for (int x : graph.get(temp)
+                ) {
+                    if (!ch[x]) {
+                        Q.add(x);
+                        ch[x] = true;
+                    }
+                }
+            }
 
-        public Edge(int v1, int v2, int cost) {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.cost = cost;
         }
 
+        public static void main(String[] args) {
+            String answer = "";
+            Queue<Integer> Q = new LinkedList<>();
+            ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+            Scanner sc = new Scanner(System.in);
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int v = sc.nextInt();
+            int search[] = new int[n];
+            ch = new boolean[n + 1];
 
-        @Override
-        public int compareTo(Edge o) {
-            return this.cost - o.cost;
+            for (int i = 0; i <= n; i++) graph.add(new ArrayList<>());
+
+            for (int i = 0; i < m; i++) {
+                int a = sc.nextInt();
+                int b = sc.nextInt();
+
+                graph.get(a).add(b);
+                graph.get(b).add(a);
+            }
+            for (int i = 0; i <= n; i++) {
+                Collections.sort(graph.get(i));
+            }
+
+            Dfs(v, graph, n, 0, search, ch);
+            for (int vtx : search
+            ) {
+                if (vtx != 0) {
+                    answer = answer + vtx + " ";
+                }
+            }
+            answer = answer.trim();
+            System.out.println(answer);
+            Arrays.fill(ch, false);
+            answer = "";
+            Bfs(0, v, graph, Q, search, ch);
+            for (int vtx : search
+            ) {
+                if (vtx != 0) {
+                    answer = answer + vtx + " ";
+                }
+            }
+            answer = answer.trim();
+            System.out.println(answer);
         }
     }
-
-
-}
