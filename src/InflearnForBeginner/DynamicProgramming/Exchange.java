@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exchange {
+    // 최소 경우의수가 구해지지 않아 dp[m]값이 인피니티일때의 경우를 고려하지 않음
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
