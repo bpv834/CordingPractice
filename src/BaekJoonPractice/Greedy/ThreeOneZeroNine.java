@@ -1,9 +1,11 @@
+package BaekJoonPractice.Greedy;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class ThreeOneZeroNine {
     static BufferedReader br;
     static StringTokenizer tk;
     static int[] dCol = new int[]{-1, 0, 1};
@@ -20,12 +22,11 @@ public class Main {
                 gasMaps[col][L] = 'X';
                 for (int i = 0; i < 3; i++) {
                     int nCol = col + dCol[i];
-                    int nRow=L+1;
+                    int nRow = L + 1;
                     if (nCol >= 0 && nCol < R && nRow < C && gasMaps[nCol][nRow] == '.') {
-                        return Dfs(nCol, nRow);
+                        if (Dfs(nCol, nRow)) return true;
                     }
                 }
-                return false;
             }
         }
         return false;
