@@ -2,61 +2,79 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.StringTokenizer;
 
 public class Main {
-    static BufferedReader br;
-    static int n;
-    static char board[][];
-    static int ch[][];
-    static int cnt = 0;
-    static String answer = "";
-    static int house = 0;
-    static int dCol[] = new int[]{-1, 1, 0, 0};
-    static int dRow[] = new int[]{0, 0, -1, 1};
-    static ArrayList<Integer> houseArr = new ArrayList<>();
-
     public static void main(String[] args) throws IOException {
-        br = new BufferedReader(new InputStreamReader(System.in));
-        n = Integer.parseInt(br.readLine());
-        board = new char[n][n];
-        ch = new int[n][n];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String nAndWeight = br.readLine();
+        StringTokenizer tk = new StringTokenizer(nAndWeight);
+        int n = Integer.parseInt(tk.nextToken());
+        int maxWeight = Integer.parseInt(tk.nextToken());
+        int m = Integer.parseInt(br.readLine());
+        int currentWeight = 0;
+        int ansWeight = 0;
+        ArrayList<PostInfo> pi = new ArrayList<>();
+        int to[] = new int[n];
+        Arrays.fill(to, maxWeight);
 
-        for (int i = 0; i < n; i++) {
-            String Col = br.readLine();
-            for (int j = 0; j < n; j++) {
-                board[i][j] = Col.charAt(j);
-            }
+        for (int i = 0; i < m; i++) {
+            String content = br.readLine();
+            StringTokenizer stringTokenizer = new StringTokenizer(content);
+
+            int sendTown = Integer.parseInt(stringTokenizer.nextToken());
+            int receiveTown = Integer.parseInt(stringTokenizer.nextToken());
+            int weight = Integer.parseInt(stringTokenizer.nextToken());
+
+            pi.add(new PostInfo(sendTown, receiveTown, weight));
         }
+        Collections.sort(pi);
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (board[i][j] == '1' && ch[i][j] == 0) {
-                    ++cnt;
-                    ch[i][j] = cnt;
-                    Dfs(i, j, cnt);
-                    houseArr.add(house);
-                    house = 0;
+
+        for (int i = 0; i < m; i++) {
+
+            int send = pi.get(i).sendNum;
+            int receive = pi.get(i).receiveNum;
+            int weight = pi.get(i).weight;
+            int minWeight = Integer.MAX_VALUE;
+
+            for (int j = send; j < receive; j++) {
+                minWeight = Math.min(minWeight, to[j]);
+            }
+
+            if (weight <= minWeight) {
+                to[send] -= weight;
+                ansWeight += weight;
+            } else {
+                for (int j = send; j < receive; j++) {
+                    to[j] -= minWeight;
                 }
+                ansWeight += minWeight;
             }
+
         }
-        System.out.println(cnt);
-        Collections.sort(houseArr);
-        for (int ha:houseArr
-        ) {
-            System.out.println(ha);
-        }
+
+        System.out.println(ansWeight);
     }
 
-    static void Dfs(int col, int row, int number) {
-        ++house;
-        for (int i = 0; i < 4; i++) {
-            int nCol = col + dCol[i];
-            int nRow = row + dRow[i];
+    static class PostInfo implements Comparable<PostInfo> {
+        int sendNum;
+        int receiveNum;
+        int weight;
 
-            if (nCol >= 0 && nCol < n && nRow >= 0 && nRow < n && board[nCol][nRow] == '1' && ch[nCol][nRow] == 0) {
-                ch[nCol][nRow] = number;
-                Dfs(nCol, nRow, number);
+        public PostInfo(int sendNum, int receiveNum, int weight) {
+            this.sendNum = sendNum;
+            this.receiveNum = receiveNum;
+            this.weight = weight;
+        }
+
+        @Override
+        public int compareTo(PostInfo o) {
+            if (this.receiveNum == o.receiveNum) return this.sendNum - o.sendNum;
+            else {
+                return this.receiveNum - o.receiveNum;
             }
         }
     }
