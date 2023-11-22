@@ -2,7 +2,7 @@ package BaekJoonPractice.Greedy;
 
 import java.util.Scanner;
 
-public class OneEightOneEightFive {
+public class Boj18185 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int answer = 0;

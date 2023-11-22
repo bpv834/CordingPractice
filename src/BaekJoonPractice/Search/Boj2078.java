@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class TwoOneSevenEight {
+public class Boj2078 {
     static int dx[] = new int[]{-1, 1, 0, 0};
     static int dy[] = new int[]{0, 0, -1, 1};
     static Queue<Edge> Q = new LinkedList<>();

@@ -2,7 +2,7 @@ package BaekJoonPractice.Search;
 
 import java.util.*;
 
-public class OneTwoSixZero {
+public class Boj1260 {
     static boolean ch[];
     static String answerD = "";
     static String answerB="";

@@ -3,7 +3,7 @@ package BaekJoonPractice.Search;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TwoSixZeroSix {
+public class Boj2606 {
     static Scanner sc = new Scanner(System.in);
     static int answer=0;
     static int n = sc.nextInt();

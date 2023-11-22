@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class ThreeOneZeroNine {
+public class Boj3109 {
     static BufferedReader br;
     static StringTokenizer tk;
     static int[] dCol = new int[]{-1, 0, 1};

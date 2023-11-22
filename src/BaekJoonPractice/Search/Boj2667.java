@@ -5,10 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
-import java.util.StringTokenizer;
 
-public class TwoSixSixSeven {
+public class Boj2667 {
     static BufferedReader br;
     static int n;
     static char board[][];
