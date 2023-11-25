@@ -1,3 +1,4 @@
+package BaekJoonPractice.Greedy;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Boj1911 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer tk = new StringTokenizer(br.readLine());
@@ -33,17 +34,23 @@ public class Main {
 
             int st = ob.st;
             int fi = ob.fi;
-            if (st != 0 && st <= end) {
+            if (st <= end) {
                 st = end + 1;
+                System.out.println("st값이 변경됨");
             }
+            System.out.println("st= " + st + " fi= " + fi);
             int gap = fi - st;
-            if ((gap) % l == 0) {
-                ans += gap / l;
-                end = fi - 1;
-            } else {
-                int cnt = gap / l + 1;
-                ans += cnt;
-                end = (st + l * cnt) - 1;
+            if (gap > 0) {
+                if ((gap) % l == 0) {
+                    ans += gap / l;
+                    end = st + l * (gap / l) - 1;
+                    System.out.println("ㅇㅇㅇㅇans= " + ans + " end= " + end);
+                } else {
+                    int cnt = gap / l + 1;
+                    ans += gap / l + 1;
+                    end = (st + l * cnt) - 1;
+                    System.out.println("ㅋㅋㅋㅋㅋans= " + ans + " end= " + end);
+                }
             }
 
         }
