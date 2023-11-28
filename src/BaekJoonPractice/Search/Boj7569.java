@@ -1,3 +1,4 @@
+package BaekJoonPractice.Search;
 
 
 import java.io.BufferedReader;
@@ -7,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Boj7569 {
     static BufferedReader br;
     static int dCol[] = new int[]{0, 0, -1, 1, 0, 0};
     static int dRow[] = new int[]{0, 0, 0, 0, -1, 1};
@@ -44,6 +45,14 @@ public class Main {
             }
         }
         Bfs();
+        for (int i = 1; i <= h; i++) {
+            for (int j = 1; j <= m; j++) {
+                for (int k = 1; k <= n; k++) {
+                    System.out.print(dis[i][j][k] + " ");
+                }
+                System.out.println();
+            }
+        }
 
         for (int i = 1; i <= h; i++) {
             for (int j = 1; j <= m; j++) {
@@ -75,8 +84,9 @@ public class Main {
                 int nRow = nowRow + dRow[i];
 
                 if (nCol >= 1 && nCol <= m && nRow >= 1 && nRow <= n && nHeight >= 1 && nHeight <= h && tomatoes[nHeight][nCol][nRow] == 0) {
+                    System.out.println("nH= "+nowHeight+" nC="+nowCol+" nR= "+nowRow);
                     tomatoes[nHeight][nCol][nRow] = 1;
-                    dis[nHeight][nCol][nRow] = dis[nowHeight][nowCol][nowRow] + 1;
+                    dis[nHeight][nCol][nRow] =dis[nowHeight][nowCol][nowRow] + 1;
                     q.add(new Point3D(nHeight, nCol, nRow));
                 }
             }
