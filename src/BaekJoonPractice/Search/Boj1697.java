@@ -1,3 +1,4 @@
+package BaekJoonPractice.Search;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,12 +8,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Boj1697 {
     static BufferedReader br;
     static int n, k;
     static int ans = Integer.MAX_VALUE;
     static Queue<queueLevel> q;
-    static Boolean ch[];
+    static Boolean[] ch;
 
     public static void main(String[] args) throws IOException {
         q = new LinkedList<>();
@@ -27,7 +28,7 @@ public class Main {
 
     }
 
-    static void Bfs() {
+    private static void Bfs() {
         q.add(new queueLevel(n, 0));
         ch[n] = true;
         while (!q.isEmpty()) {
