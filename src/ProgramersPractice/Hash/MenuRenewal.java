@@ -85,9 +85,14 @@ public class MenuRenewal {
             }
         }
         class KeyValue {
+
+            char[][] maps=new char[3][2];
+
             String key;
             int value;
 
+            String []str = new String[3];
+            int x= str.length;
             KeyValue(String key, int value) {
                 this.key = key;
                 this.value = value;
